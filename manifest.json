@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Buzzkill",
+  "description": "No more clickbaits!",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": {"38": "icon.png"},
+    "default_popup": "settings.html",
+    "js": ["buzzkill.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["buzzkill.js"]
+    }
+  ],
+
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}

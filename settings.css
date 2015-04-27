@@ -1,0 +1,12 @@
+body {
+    min-width: 200px;
+    font-family: "Roboto";
+}
+
+#snoop {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    right: 2%;
+    top: 5%;
+}
