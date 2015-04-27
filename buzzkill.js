@@ -4,22 +4,25 @@ chrome.storage.sync.get("buzzkill", function(data) {
 });
 
 var blacklist = ["buzzfeed", "bzfd"];
+var prevLinksLength = 0;
 
-setTimeout(function(){
-    if (enabled == 1) {
+var readyStateCheckInterval = setInterval(function() {
+    if (document.readyState === "complete") {
+        console.log(document.readyState);
+        clearInterval(readyStateCheckInterval);
         buzzkill();
     }
-}, 5000);
+}, 100);
 
 function buzzkill () {
     console.log("reached here");
     var links = document.links;
+    prevLinksLength = links.length;
     for (var i = 0; i < links.length; ++i) {
         var link_href = links[i].href.toLowerCase();
-        console.log(link_href);
         if (checkLinks(link_href)) {
-            console.log(link_href);
             links[i].remove();
+            --i;
         }
     }
 }
@@ -34,4 +37,7 @@ function checkLinks(link) {
     return false;
 }
 
-buzzkill();
+var test = setInterval(function() {
+    var newLinks = document.links;
+    if (newLinks.length > prevLinksLength) buzzkill();
+}, 3000);
