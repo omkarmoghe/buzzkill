@@ -5,9 +5,16 @@
     <link rel="stylesheet" type="text/css" href="settings.css">
   </head>
   <body>
-    <button id="buzzkill_on" type="button">Buzzkill</button>
-    <button id="buzzkill_off" type="button">Show links</button>
-    <br/><br/>
+
+    <div id="switch">
+      <form>
+        <input type="radio" name="ed_radio" value="enabled">Enabled
+        <br>
+        <input type="radio" name="ed_radio" value="disabled">Disabled
+      </form>
+      <button id="update" type="button">Update preferences</button>
+    </div>
+
   </body>
   <script language="javascript" type="text/javascript" src="settings.js"></script>
 </html>

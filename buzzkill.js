@@ -3,7 +3,7 @@ chrome.storage.sync.get("buzzkill", function(data) {
     enabled = data.buzzkill;
 });
 
-var blacklist = ["buzzfeed", "bzfd"];
+var blacklist = ["buzzfeed", "bzfd", "universityprimetime"];
 var prevLinksLength = 0;
 
 var readyStateCheckInterval = setInterval(function() {
@@ -15,16 +15,17 @@ var readyStateCheckInterval = setInterval(function() {
 }, 100);
 
 function buzzkill () {
-    console.log("reached here");
-    var links = document.links;
-    prevLinksLength = links.length;
-    for (var i = 0; i < links.length; ++i) {
-        var link_href = links[i].href.toLowerCase();
-        if (checkLinks(link_href)) {
-            links[i].remove();
-            --i;
+    if(enabled) {
+        var links = document.links;
+        prevLinksLength = links.length;
+        for (var i = 0; i < links.length; ++i) {
+            var link_href = links[i].href.toLowerCase();
+            if (checkLinks(link_href)) {
+                links[i].remove();
+                --i;
+            }
         }
-    }
+    } else return;
 }
 
 function checkLinks(link) {
